@@ -87,7 +87,14 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
-        Post::findOrFail($id)->update($request->all());
+        $post = Post::findOrFail($id);
+        $data = $request->all();
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            $data['path'] = $name;
+        }
+        $post->update($data);
         return redirect('/posts');
     }
 

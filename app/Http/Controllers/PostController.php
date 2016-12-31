@@ -39,8 +39,15 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        //
-        Post::create($request->all());
+        // Testing with file
+        $data = $request->all();
+        if ($file = $request->file('file')) {
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            // Specify file name to data array key which corresponds to DB column
+            $data['path'] = $name;
+        }
+        Post::create($data);
         return redirect('/posts');
     }
 

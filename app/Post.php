@@ -33,4 +33,9 @@ class Post extends Model
         }
         return $value;
     }
+    
+    // Setting up an accessor to create path for images
+    public function getPathAttribute($value) {
+        return '/public/images/' . $value;
+    }
 }

@@ -6,6 +6,8 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
     {!! Form::label('content', 'Post Content') !!}
     {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+    {!! Form::label('file', 'Attach File') !!}
+    {!! Form::file('file', ['class' => 'form-group']) !!}
     {!! Form::submit('Create Post', ['class' => 'form-control']) !!}
     {!! Form::close() !!}
     @if(count($errors) > 0)
